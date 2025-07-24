@@ -9,12 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -24,10 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-
-
+import com.example.giftshop.auth.LoginActivity
+import com.example.giftshop.view.DashboardActivity
+import com.example.giftshop.view.admin.AdminDashboardActivity
 import kotlinx.coroutines.delay
 
 class SplashActivity : ComponentActivity() {
@@ -35,56 +30,44 @@ class SplashActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
+            SplashBody()
         }
     }
 }
 
 @Composable
 fun SplashBody() {
-
     val context = LocalContext.current
     val activity = context as Activity
 
     val sharedPreferences = context.getSharedPreferences("User", Context.MODE_PRIVATE)
-    val editor = sharedPreferences.edit()
-
-    val localEmail : String = sharedPreferences.getString("email","").toString()
-
+    val savedEmail = sharedPreferences.getString("email", "").orEmpty()
+    val role = sharedPreferences.getString("role", "").orEmpty()
 
     LaunchedEffect(Unit) {
-        delay(3000)
-        if(localEmail.isEmpty()){
-            val intent = Intent(context, LoginActivity::class.java)
-            context.startActivity(intent)
-            activity.finish()
-        }else{
-            val intent = Intent(context, DashboardActivity::class.java)
-            context.startActivity(intent)
-            activity.finish()
+        delay(2000)
+        val nextActivity = when {
+            savedEmail.isEmpty() -> LoginActivity::class.java
+            role == "admin" -> AdminDashboardActivity::class.java
+            else -> DashboardActivity::class.java
         }
 
+        context.startActivity(Intent(context, nextActivity))
+        activity.finish()
     }
 
     Scaffold { padding ->
-        Column(modifier = Modifier
-            .padding(padding).background(color = Color.White)
-            .fillMaxSize(),
+        Column(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+                .background(Color.White),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painterResource(R.drawable.logo),
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.height(10.dp))
+            Image(painter = painterResource(id = R.drawable.logo), contentDescription = "Logo")
+            Spacer(modifier = Modifier.height(16.dp))
             CircularProgressIndicator()
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewSplash() {
-    SplashBody()
 }

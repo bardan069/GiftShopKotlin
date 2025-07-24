@@ -1,6 +1,5 @@
-package com.example.giftshop
+package com.example.giftshop.view
 
-import AddProductActivity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -35,6 +34,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.giftshop.repository.ProductRepositoryImpl
+import com.example.giftshop.view.admin.AddProductActivity
+import com.example.giftshop.view.admin.UpdateProductActivity
 import com.example.giftshop.viewmodel.ProductViewModel
 
 class DashboardActivity : ComponentActivity() {
@@ -128,4 +129,5 @@ fun DashboardBody() {
 @Preview
 @Composable
 fun previewDash() {
-    DashboardBody()}
+    DashboardBody()
+}

@@ -1,4 +1,4 @@
-package com.example.giftshop
+package com.example.giftshop.auth
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

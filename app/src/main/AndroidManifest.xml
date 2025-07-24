@@ -16,83 +16,44 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiftShop"
         tools:targetApi="31">
-        <activity
-            android:name="AddProductActivity"
-            android:exported="true"
-            android:label="@string/title_activity_add_product"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".UpdateProductActivity"
+            android:name=".view.admin.UpdateProductActivity"
             android:exported="true"
             android:label="@string/title_activity_update_product"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.GiftShop" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".auth.RegistrationActivity"
             android:exported="true"
             android:label="@string/title_activity_registration"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.GiftShop" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".ForgetPasswordActivity"
+            android:name=".auth.ForgetPasswordActivity"
             android:exported="true"
             android:label="@string/title_activity_forget_password"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.GiftShop" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".DashboardActivity"
+            android:name=".view.DashboardActivity"
             android:exported="true"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.GiftShop" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.GiftShop" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".NavigationActivity"
+            android:name=".navigation.NavigationActivity"
             android:exported="true"
             android:label="@string/title_activity_nav_bar"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.GiftShop" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!-- Corrected SplashActivity path assuming it's in root package -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -100,21 +61,10 @@
             android:theme="@style/Theme.GiftShop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.GiftShop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

@@ -3,68 +3,55 @@ package com.example.giftshop.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.giftshop.model.UserModel
-import com.example.giftshop.repository.UserRepository
-import com.google.firebase.auth.FirebaseUser
+import com.example.giftshop.repository.UserRepositoryImpl
 
-class UserViewModel(val repo : UserRepository) : ViewModel() {
-    fun login(
-        email: String, password: String,
-        callback: (Boolean, String) -> Unit
-    ) {
-        repo.login(email, password, callback)
-    }
+sealed class LoginResult {
+    object Loading : LoginResult()
+    data class Success(val role: String) : LoginResult()
+    data class Error(val message: String) : LoginResult()
+    object Idle : LoginResult()
+}
 
-    //authentication function
-    fun register(
-        email: String, password: String,
-        callback: (Boolean, String, String) -> Unit
-    ) {
-        repo.register(email, password, callback)
-    }
+class UserViewModel : ViewModel() {
 
-    //database function
-    fun addUserToDatabase(
-        userId: String, model: UserModel,
-        callback: (Boolean, String) -> Unit
-    ) {
-        repo.addUserToDatabase(userId, model, callback)
-    }
+    private val repository = UserRepositoryImpl()
 
-    fun updateProfile(
-        userId: String, data: MutableMap<String, Any?>,
-        callback: (Boolean, String) -> Unit
-    ) {
-        repo.updateProfile(userId, data, callback)
-    }
+    private val _loginState = MutableLiveData<LoginResult>(LoginResult.Idle)
+    val loginState: LiveData<LoginResult> get() = _loginState
 
-    fun forgetPassword(
-        email: String, callback: (Boolean, String) -> Unit
-    ) {
-        repo.forgetPassword(email, callback)
-    }
+    private val _registerState = MutableLiveData<LoginResult>(LoginResult.Idle)
+    val registerState: LiveData<LoginResult> get() = _registerState
 
-    fun getCurrentUser(): FirebaseUser? {
-        return repo.getCurrentUser()
-    }
-
-
-    private val _users = MutableLiveData<UserModel?>()
-
-    val users: LiveData<UserModel?> get() = _users
-
-    fun getUserById(
-        userId: String,
-    ) {
-        repo.getUserByID(userId) { users, success, message ->
+    fun login(email: String, password: String) {
+        _loginState.value = LoginResult.Loading
+        repository.login(email, password) { success, message ->
             if (success) {
-                if (success && users != null) {
-                    _users.postValue(users)
-                } else {
-                    _users.postValue(null)
-                }
+                // Determine role based on email (adjust as needed)
+                val role = if (email == "admin@gmail.com") "admin" else "user"
+                _loginState.value = LoginResult.Success(role)
+            } else {
+                _loginState.value = LoginResult.Error(message)
             }
+        }
+    }
 
+    fun register(email: String, password: String) {
+        _registerState.value = LoginResult.Loading
+        repository.register(email, password) { success, message, _ ->
+            if (success) {
+                // Assume newly registered users have "user" role
+                _registerState.value = LoginResult.Success("user")
+            } else {
+                _registerState.value = LoginResult.Error(message)
+            }
+        }
+    }
+
+    fun logout() {
+        repository.logout { success, _ ->
+            if (success) {
+                _loginState.value = LoginResult.Idle
+            }
         }
     }
 }

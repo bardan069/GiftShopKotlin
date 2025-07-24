@@ -1,4 +1,4 @@
-package com.example.giftshop
+package com.example.giftshop.view.admin
 
 import android.app.Activity
 import android.os.Bundle
@@ -25,11 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.giftshop.model.ProductModel
 import com.example.giftshop.repository.ProductRepositoryImpl
-import com.example.giftshop.ui.theme.GiftShopTheme
 import com.example.giftshop.viewmodel.ProductViewModel
 
 class UpdateProductActivity : ComponentActivity() {

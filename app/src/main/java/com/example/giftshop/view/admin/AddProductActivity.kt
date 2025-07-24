@@ -1,3 +1,5 @@
+package com.example.giftshop.view.admin
+
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
@@ -17,16 +19,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,9 +38,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.giftshop.R
 import com.example.giftshop.model.ProductModel
-import com.example.giftshop.repository.ProductRepository
 import com.example.giftshop.repository.ProductRepositoryImpl
-import com.example.giftshop.repository.UserRepository
 import com.example.giftshop.utils.ImageUtils
 
 import com.example.giftshop.viewmodel.ProductViewModel
