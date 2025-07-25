@@ -22,7 +22,7 @@ class ImageUtils(private val activity: Activity, private val registryOwner: Acti
     fun registerLaunchers(onImageSelected: (Uri?) -> Unit) {
         onImageSelectedCallback = onImageSelected
 
-
+        // Register for selecting image from gallery
         galleryLauncher = registryOwner.activityResultRegistry.register(
             "galleryLauncher", ActivityResultContracts.StartActivityForResult()
         ) { result ->
