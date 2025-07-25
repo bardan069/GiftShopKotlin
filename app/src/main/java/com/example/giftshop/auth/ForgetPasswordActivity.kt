@@ -42,7 +42,7 @@ class ForgetPasswordActivity : ComponentActivity() {
 }
 
 
-@Composable
+
 fun ForgetBody(innerPaddingValues: PaddingValues) {
 
     var email by remember { mutableStateOf("") }
