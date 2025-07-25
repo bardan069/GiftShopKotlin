@@ -8,5 +8,5 @@ data class UserModel(
     var firstName: String="",
     var lastName: String="",
     var gender: String="",
-    var address: String="",
+
 )
