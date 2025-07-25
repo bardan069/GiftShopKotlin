@@ -23,7 +23,7 @@ interface UserRepository {
     //{
 //   "success":true,
 //    "message": "registration successful"
-//    userID:"jsdjsjsj"
+//
 //}
     fun register(email:String, password: String,
                  callback: (Boolean, String,String) -> Unit)

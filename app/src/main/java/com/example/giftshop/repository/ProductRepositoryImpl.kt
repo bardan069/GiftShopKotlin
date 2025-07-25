@@ -114,7 +114,7 @@ class ProductRepositoryImpl : ProductRepository{
     }
 
     override fun getProductById(
-
+        productId: String,
         callback: (Boolean, String, ProductModel?) -> Unit
     ) {ref.addValueEventListener(object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
