@@ -25,7 +25,7 @@ interface ProductRepository {
 
     /*
   success : true,
-  message : "product fetched successfully"
+
    */
     fun getProductById(
         productId: String,

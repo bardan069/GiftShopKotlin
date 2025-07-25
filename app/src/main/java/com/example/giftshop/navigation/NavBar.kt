@@ -38,7 +38,7 @@ class NavigationActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
+            NavigationBody()
         }
     }
 }
